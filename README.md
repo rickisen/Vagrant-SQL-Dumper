@@ -15,10 +15,12 @@ Used to connect to the ssh server running on the vm, not the mysql server
 database = database 
 
 outputFile = "$( realpath $( dirname $0 ) )/sqlDump"-"$( date "+%y%m%d-%H%M%S" )".sql 
+
 Should end up looking something like: /home/user/projects/project/folder/sqlDump-160220-133700.sql
 if the vagrantSqlDump.sh script is located in /home/user/projects/project/folder/
 
 keysdirectory
+
 This is a subfolder of the hidden folder ".vagrant" that holds the "private_key" file. 
 This file is used to connect to the vagrant vm via ssh. 
 If not specified by the user, the vagrantSqlDump script will automatically find this folder by looking in parrent 
