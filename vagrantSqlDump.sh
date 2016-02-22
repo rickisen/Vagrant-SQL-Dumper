@@ -3,11 +3,17 @@
 # script that logs on to a vagrant vm and dumps a sql database. 
 # it's ment to be run from withn a folder inside a vagrant structure.
 
+# get the folder the script was run from (works better from osx like this)
+bashRealpath() {
+    [[ $1 = /* ]] && echo "$1" || echo "$PWD/${1#./}"
+} 
+folderRunFrom="$(dirname "$(bashRealpath "$0")")"
+
 # initzialize empty/default parameters 
-hostname="192.168.33.11"
+hostname="qlokast.local"
 username=vagrant # to connect to the ssh server running on the vm, not the mysql server
-database=database 
-outputFile="$( realpath $( dirname $0 ) )/sqlDump"-"$( date "+%y%m%d-%H%M%S" )".sql # /home/user/projects/project/folder/database-160220-133700.sql
+database=wordpress 
+outputFile="$folderRunFrom/sqlDump"-"$( date "+%y%m%d-%H%M%S" )".sql # /home/user/projects/project/folder/database-160220-133700.sql
 
 if [[ $1 == "--help" ]]; then
 	echo '
